@@ -4,8 +4,13 @@ import winston from 'winston';
 import winstonDaily from 'winston-daily-rotate-file';
 import { LOG_DIR } from '@config';
 
-// logs dir
-const logDir: string = join(__dirname, LOG_DIR);
+// Define a default directory if LOG_DIR is not provided
+const logsBaseDir = LOG_DIR || 'logs';  // Default to 'logs' directory
+const logDir: string = join(__dirname, logsBaseDir);
+
+if (!existsSync(logDir)) {
+  mkdirSync(logDir);
+}
 
 if (!existsSync(logDir)) {
   mkdirSync(logDir);
