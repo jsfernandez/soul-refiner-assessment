@@ -21,7 +21,14 @@ services:
       - mysql
     environment: 
       DATABASE_URL: "mysql://root:password@mysql:3306/test"
-    command: sh ./wait-for-it
+      NODE_ENV: development  # Ajusta según sea necesario
+      PORT: 3000
+      SECRET_KEY: "I4MEJ2jCVQWHMnkiJIcOyVo+UIFbMlL0qbDslO2szhE="
+      LOG_FORMAT: 'combined'
+      LOG_DIR: '/logs'
+      ORIGIN: 'http://localhost:3000'
+      CREDENTIALS: 'true'
+    #command: /bin/bash ./wait-for-it
   mysql:
     image: mysql:5.7
     container_name: mysql
